@@ -1,5 +1,5 @@
 //
-//  Array+Choose.swift
+//  Array+choose.swift
 //  QuickLearn
 //
 //  Created by TheMoonThatRises on 10/30/23.

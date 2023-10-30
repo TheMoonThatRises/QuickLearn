@@ -1,14 +1,18 @@
 //
-//  SetView.swift
+//  LearnSetView.swift
 //  QuickLearn
 //
 //  Created by TheMoonThatRises on 10/29/23.
 //
 
 import SwiftUI
+import AlertToast
 
 struct SetView: View {
     @Bindable var set: LearnSet
+
+    @State var showExportSuccess = false
+    @State var showExportError = false
 
     var body: some View {
         NavigationStack {
@@ -121,7 +125,40 @@ struct SetView: View {
                 }
             }
             .navigationTitle($set.name)
-            .padding()
+            .toast(isPresenting: $showExportSuccess) {
+                AlertToast(displayMode: .alert, type: .complete(.green), title: "Copied to clipboard")
+            }
+            .toast(isPresenting: $showExportError) {
+                AlertToast(displayMode: .alert, type: .error(.red), title: "Failed to export")
+            }
+            .toolbar {
+                ToolbarItem {
+                    Menu {
+                        Button {
+
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        Button {
+                            do {
+                                if let save = try SaveLoad.encode(set: set) {
+                                    UIPasteboard.general.string = save
+                                } else {
+                                    throw "nil save string"
+                                }
+
+                                showExportSuccess = true
+                            } catch {
+                                showExportError = true
+                            }
+                        } label: {
+                            Label("Export", systemImage: "square.and.arrow.up")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                    }
+                }
+            }
             .onChange(of: set.setList) {
                 for item in set.setList where
                     item.definition.isEmpty && item.term.isEmpty && item.id != set.setList.last?.id {
