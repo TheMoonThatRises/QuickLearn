@@ -12,7 +12,7 @@ import SwiftData
 struct QuickLearnApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            LearnSet.self,
+            LearnSet.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
