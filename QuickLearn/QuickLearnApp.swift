@@ -2,7 +2,7 @@
 //  QuickLearnApp.swift
 //  QuickLearn
 //
-//  Created by RangerEmerald on 10/28/23.
+//  Created by TheMoonThatRises on 10/28/23.
 //
 
 import SwiftUI

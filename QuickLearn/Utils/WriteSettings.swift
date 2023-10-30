@@ -2,7 +2,7 @@
 //  WriteSettings.swift
 //  QuickLearn
 //
-//  Created by RangerEmerald on 10/29/23.
+//  Created by TheMoonThatRises on 10/29/23.
 //
 
 import Foundation

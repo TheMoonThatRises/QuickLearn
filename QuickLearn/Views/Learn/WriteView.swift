@@ -2,10 +2,11 @@
 //  WriteView.swift
 //  QuickLearn
 //
-//  Created by RangerEmerald on 10/29/23.
+//  Created by TheMoonThatRises on 10/29/23.
 //
 
 import SwiftUI
+import AlertToast
 
 struct WriteView: View {
     var set: LearnSet
@@ -46,13 +47,14 @@ struct WriteView: View {
                         .padding()
                     Text(writeType == .term ? card.definition : card.term)
                         .font(.title3)
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                        .padding(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 40))
 
                     Spacer()
 
                     Text(writeType == .term ? "Term:" : "Definition:")
                         .bold()
                         .font(.title2)
+                        .padding()
                     TextField("Answer", text: $answer)
                         .autocorrectionDisabled()
                         .padding()
@@ -63,28 +65,37 @@ struct WriteView: View {
                         .padding()
                     Spacer()
 
-                    Button("Check") {
-                        checkAnswer(isButtonPress: true)
+                    HStack {
+                        Spacer()
+
+                        Button("Check") {
+                            checkAnswer(isButtonPress: true)
+                        }
+                        .padding()
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(.blue)
+                        }
+                        .padding()
                     }
+
+                    Spacer()
                 }
             }
             .navigationTitle("Write")
             .disabled(showCorrect)
-            .overlay {
-                if showCorrect || showIncorrect {
-                    VStack {
-                        if showCorrect {
-                            Text("Correct!")
-                                .padding()
-                        } else if showIncorrect {
-                            Text("Incorrect. The correct answer was:")
-                            Text(writeType == .term ? card.term : card.definition)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
-                    .padding()
-                }
+            .toast(isPresenting: $showCorrect) {
+                AlertToast(displayMode: .alert, type: .complete(.green), title: "Correct!")
+            }
+            .toast(isPresenting: $showIncorrect) {
+                AlertToast(displayMode: .alert,
+                           type: .error(.red),
+                           title: "Incorrect",
+                           subTitle: """
+                                    The correct \(writeType == .term ? "term" : "definition") is: \
+                                    \(writeType == .term ? card.term : card.definition)
+                                    """
+                )
             }
             .onChange(of: answer) {
                checkAnswer(isButtonPress: false)
@@ -105,30 +116,25 @@ struct WriteView: View {
             }
 
             Task {
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                try? await Task.sleep(nanoseconds: 1_500_000_000)
 
-                withAnimation {
-                    showCorrect = false
-                }
+                showCorrect = false
 
                 increment()
             }
 
             set.setList[cardIndex].successCount += 1
+            set.setList[cardIndex].recentFail = false
         } else if isButtonPress {
             set.setList[cardIndex].failCount += 1
             set.setList[cardIndex].recentFail = true
 
-            withAnimation {
-                showIncorrect = true
-            }
+            showIncorrect = true
 
             Task {
-                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                try? await Task.sleep(nanoseconds: 3_000_000_000)
 
-                withAnimation {
-                    showIncorrect = false
-                }
+                showIncorrect = false
 
                 increment()
             }
