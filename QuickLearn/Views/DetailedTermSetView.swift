@@ -16,13 +16,19 @@ struct DetailedTermSetView: View {
                 GridRow {
                     Text("Term")
                     Spacer()
-                    TextField("", text: $termSet.term, axis: .vertical)
+                    GroupBox {
+                        TextField("", text: $termSet.term, axis: .vertical)
+                    }
+                    .padding()
                 }
                 Divider()
                 GridRow {
                     Text("Definition")
                     Spacer()
-                    TextField("", text: $termSet.definition, axis: .vertical)
+                    GroupBox {
+                        TextField("", text: $termSet.definition, axis: .vertical)
+                    }
+                    .padding()
                 }
                 Divider()
                 GridRow {
