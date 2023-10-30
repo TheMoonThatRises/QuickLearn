@@ -7,12 +7,13 @@
 
 import Foundation
 
-enum WriteOrder: String {
+enum WriteOrder: String, CaseIterable, Equatable {
     case inOrder = "In Order"
     case random = "Random"
+    case star = "Starred"
 }
 
-enum WriteType: String {
+enum WriteType: String, CaseIterable, Equatable {
     case term = "Term"
     case definition = "Definition"
 }
