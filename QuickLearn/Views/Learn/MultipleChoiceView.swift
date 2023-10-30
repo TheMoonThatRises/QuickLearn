@@ -59,6 +59,7 @@ struct MultipleChoiceView: View {
                                 }
                             }
                         }
+                        .disabled(viewModel.showCorrect || viewModel.showIncorrect)
 
                         Spacer()
                     }
@@ -66,10 +67,10 @@ struct MultipleChoiceView: View {
             }
             .navigationTitle("Multiple Choice")
             .disabled(viewModel.showCorrect)
-            .toast(isPresenting: $viewModel.showCorrect) {
+            .toast(isPresenting: $viewModel.showCorrect, tapToDismiss: false) {
                 viewModel.correctToast
             }
-            .toast(isPresenting: $viewModel.showIncorrect) {
+            .toast(isPresenting: $viewModel.showIncorrect, tapToDismiss: false) {
                 viewModel.incorrectToast
             }
             .sheet(isPresented: $viewModel.showSettingsSheet) {

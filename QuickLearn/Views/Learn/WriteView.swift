@@ -39,6 +39,7 @@ struct WriteView: View {
                         .font(.title2)
                         .padding()
                     TextField("Answer", text: $viewModel.answer)
+                        .disabled(viewModel.showCorrect || viewModel.showIncorrect)
                         .autocorrectionDisabled()
                         .padding()
                         .overlay {
@@ -53,6 +54,7 @@ struct WriteView: View {
                         Button("Check") {
                             viewModel.checkAnswer()
                         }
+                        .disabled(viewModel.showCorrect || viewModel.showIncorrect)
                         .padding()
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
@@ -66,10 +68,10 @@ struct WriteView: View {
             }
             .navigationTitle("Write")
             .disabled(viewModel.showCorrect)
-            .toast(isPresenting: $viewModel.showCorrect) {
+            .toast(isPresenting: $viewModel.showCorrect, tapToDismiss: false) {
                 viewModel.correctToast
             }
-            .toast(isPresenting: $viewModel.showIncorrect) {
+            .toast(isPresenting: $viewModel.showIncorrect, tapToDismiss: false) {
                 viewModel.incorrectToast
             }
             .sheet(isPresented: $viewModel.showSettingsSheet) {
