@@ -30,12 +30,12 @@ class SaveLoad {
                 return nil
             }
 
-            return try propertyDecoder.decode(LearnSet.self, from: data)
+            return CodableLearnSet.toLearnSet(set: try propertyDecoder.decode(CodableLearnSet.self, from: data))
         }
     }
 
     public static func encode(set: LearnSet) throws -> String? {
-        return try String(data: propertyEncoder.encode(set), encoding: .ascii)
+        return try String(data: propertyEncoder.encode(CodableLearnSet.fromLearnSet(set: set)), encoding: .ascii)
     }
 }
 

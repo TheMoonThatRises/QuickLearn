@@ -23,6 +23,7 @@
 		B668D3072AEE59300000BAF6 /* LearnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D3062AEE59300000BAF6 /* LearnType.swift */; };
 		B668D30D2AEE616E0000BAF6 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D30C2AEE616E0000BAF6 /* WriteView.swift */; };
 		B668D30F2AEE61B60000BAF6 /* SettingsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D30E2AEE61B60000BAF6 /* SettingsEnum.swift */; };
+		B67054762AF0043600C9697A /* CodableLearnSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67054752AF0043600C9697A /* CodableLearnSet.swift */; };
 		B69B16852AEDE41000C79327 /* QuickLearnApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B16842AEDE41000C79327 /* QuickLearnApp.swift */; };
 		B69B168B2AEDE41200C79327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69B168A2AEDE41200C79327 /* Assets.xcassets */; };
 		B69B168E2AEDE41200C79327 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69B168D2AEDE41200C79327 /* Preview Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		B668D3062AEE59300000BAF6 /* LearnType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnType.swift; sourceTree = "<group>"; };
 		B668D30C2AEE616E0000BAF6 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		B668D30E2AEE61B60000BAF6 /* SettingsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEnum.swift; sourceTree = "<group>"; };
+		B67054752AF0043600C9697A /* CodableLearnSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLearnSet.swift; sourceTree = "<group>"; };
 		B69B16812AEDE41000C79327 /* QuickLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69B16842AEDE41000C79327 /* QuickLearnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLearnApp.swift; sourceTree = "<group>"; };
 		B69B168A2AEDE41200C79327 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				B69B16972AEDEE5400C79327 /* LearnSet.swift */,
+				B67054752AF0043600C9697A /* CodableLearnSet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				B60AAF5C2AF046E400ACE466 /* FlashcardVM.swift in Sources */,
 				B69B16852AEDE41000C79327 /* QuickLearnApp.swift in Sources */,
 				B60AAF522AF01E0400ACE466 /* DetailedTermSetView.swift in Sources */,
+				B67054762AF0043600C9697A /* CodableLearnSet.swift in Sources */,
 				B69B16982AEDEE5400C79327 /* LearnSet.swift in Sources */,
 				B668D3032AEE57300000BAF6 /* FlashcardView.swift in Sources */,
 				B668D2FD2AEE32BD0000BAF6 /* LearnSetView.swift in Sources */,
