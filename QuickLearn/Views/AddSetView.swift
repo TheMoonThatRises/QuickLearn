@@ -14,7 +14,7 @@ struct AddSetView: View {
 
     @State var setName = ""
     @State var setDescription = ""
-    
+
     @State var setLists: [TermSet] = [.init(term: "", definition: "")]
 
     var canSubmit: Bool {

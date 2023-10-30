@@ -13,7 +13,7 @@ struct FinishView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            ScrollView {
                 switch type {
                 case .flashcards:
                     Text("You finished all \(set.setList.count) of the flashcards!")
@@ -21,13 +21,12 @@ struct FinishView: View {
                         .font(.title)
                 case .write, .multiple:
                     let dtype = type == .write ? "writing" : "multiple choice"
-                    
+
                     Text("You finished all \(set.setList.count) \(dtype) terms!")
                         .bold()
                         .font(.title)
 
                     Spacer()
-
 
                     VStack(alignment: .leading) {
                         let incorrect = set.setList.filter { $0.recentFail }
