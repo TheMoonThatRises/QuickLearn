@@ -28,7 +28,7 @@ struct SetView: View {
 
                 Section {
                     NavigationLink {
-                        FlashcardView(set: set)
+                        FlashcardView(viewModel: FlashcardVM(set: $set))
                     } label: {
                         HStack {
                             Image(systemName: "rectangle.fill.on.rectangle.fill")
@@ -38,7 +38,7 @@ struct SetView: View {
                         }
                     }
                     NavigationLink {
-                        WriteView(set: set)
+                        WriteView(viewModel: WriteVM(set: $set))
                     } label: {
                         HStack {
                             Image(systemName: "square.and.pencil")
@@ -48,7 +48,7 @@ struct SetView: View {
                         }
                     }
                     NavigationLink {
-
+                        MultipleChoiceView(viewModel: MultipleChoiceVM(set: $set))
                     } label: {
                         HStack {
                             Image(systemName: "list.clipboard.fill")
@@ -83,13 +83,15 @@ struct SetView: View {
 
                     List {
                         ForEach($set.setList) { set in
-                            GroupBox {
-                                TextField(text: set.term) {
-                                    Text("Term (e.g. Mitochondria)")
-                                }
-                                Divider()
-                                TextField(text: set.definition) {
-                                    Text("Definition (e.g. The powerhouse of the cell)")
+                            NavigationLink {
+                                DetailedTermSetView(termSet: set)
+                            } label: {
+                                GroupBox {
+                                    TextField("Term (e.g. Mitochondria)", text: set.term, axis: .vertical)
+                                    Divider()
+                                    TextField("Definition (e.g. The powerhouse of the cell)",
+                                              text: set.definition,
+                                              axis: .vertical)
                                 }
                             }
                             .autocorrectionDisabled()
@@ -129,11 +131,11 @@ struct SetView: View {
             .onChange(of: set.sortMethod) {
                 withAnimation {
                     switch set.sortMethod {
-                    case .alpha( _):
+                    case .alpha:
                         set.setList.sort { $0.term > $1.term }
-                    case .star(_):
+                    case .star:
                         set.setList.sort { $0.isStarred && !$1.isStarred }
-                    case .fail(_):
+                    case .fail:
                         set.setList.sort {
                             ($0.seenCount == 0 || $1.seenCount == 0) ||
                             ($0.failCount / $0.seenCount < $1.failCount / $1.seenCount)
