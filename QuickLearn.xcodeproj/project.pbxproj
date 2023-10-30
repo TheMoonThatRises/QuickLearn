@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60AAF482AEFF2F300ACE466 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B60AAF472AEFF2F300ACE466 /* AlertToast */; };
+		B60AAF4A2AEFF97100ACE466 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF492AEFF97100ACE466 /* MultipleChoiceView.swift */; };
+		B60AAF4C2AF003BB00ACE466 /* Array+Choose.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF4B2AF003BB00ACE466 /* Array+Choose.swift */; };
+		B60AAF502AF01C6D00ACE466 /* LearnSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF4F2AF01C6D00ACE466 /* LearnSettingsView.swift */; };
+		B60AAF522AF01E0400ACE466 /* DetailedTermSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF512AF01E0400ACE466 /* DetailedTermSetView.swift */; };
+		B60AAF5A2AF043B000ACE466 /* GenericLearnVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF592AF043B000ACE466 /* GenericLearnVM.swift */; };
+		B60AAF5C2AF046E400ACE466 /* FlashcardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF5B2AF046E400ACE466 /* FlashcardVM.swift */; };
+		B60AAF612AF054B300ACE466 /* MultipleChoiceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF602AF054B300ACE466 /* MultipleChoiceVM.swift */; };
+		B60AAF632AF0571700ACE466 /* WriteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60AAF622AF0571700ACE466 /* WriteVM.swift */; };
 		B668D2FD2AEE32BD0000BAF6 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D2FC2AEE32BD0000BAF6 /* SetView.swift */; };
 		B668D3032AEE57300000BAF6 /* FlashcardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D3022AEE57300000BAF6 /* FlashcardView.swift */; };
 		B668D3052AEE58F70000BAF6 /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B668D3042AEE58F70000BAF6 /* FinishView.swift */; };
@@ -22,6 +31,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B60AAF492AEFF97100ACE466 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
+		B60AAF4B2AF003BB00ACE466 /* Array+Choose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Choose.swift"; sourceTree = "<group>"; };
+		B60AAF4F2AF01C6D00ACE466 /* LearnSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsView.swift; sourceTree = "<group>"; };
+		B60AAF512AF01E0400ACE466 /* DetailedTermSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTermSetView.swift; sourceTree = "<group>"; };
+		B60AAF592AF043B000ACE466 /* GenericLearnVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericLearnVM.swift; sourceTree = "<group>"; };
+		B60AAF5B2AF046E400ACE466 /* FlashcardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardVM.swift; sourceTree = "<group>"; };
+		B60AAF602AF054B300ACE466 /* MultipleChoiceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceVM.swift; sourceTree = "<group>"; };
+		B60AAF622AF0571700ACE466 /* WriteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteVM.swift; sourceTree = "<group>"; };
 		B668D2FC2AEE32BD0000BAF6 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
 		B668D3022AEE57300000BAF6 /* FlashcardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardView.swift; sourceTree = "<group>"; };
 		B668D3042AEE58F70000BAF6 /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
@@ -42,15 +59,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60AAF482AEFF2F300ACE466 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60AAF582AF043A600ACE466 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B60AAF592AF043B000ACE466 /* GenericLearnVM.swift */,
+				B60AAF5B2AF046E400ACE466 /* FlashcardVM.swift */,
+				B60AAF602AF054B300ACE466 /* MultipleChoiceVM.swift */,
+				B60AAF622AF0571700ACE466 /* WriteVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		B668D2FE2AEE484F0000BAF6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B60AAF4B2AF003BB00ACE466 /* Array+Choose.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -61,6 +91,8 @@
 				B668D3022AEE57300000BAF6 /* FlashcardView.swift */,
 				B668D3042AEE58F70000BAF6 /* FinishView.swift */,
 				B668D30C2AEE616E0000BAF6 /* WriteView.swift */,
+				B60AAF492AEFF97100ACE466 /* MultipleChoiceView.swift */,
+				B60AAF4F2AF01C6D00ACE466 /* LearnSettingsView.swift */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -84,6 +116,7 @@
 		B69B16832AEDE41000C79327 /* QuickLearn */ = {
 			isa = PBXGroup;
 			children = (
+				B60AAF582AF043A600ACE466 /* ViewModels */,
 				B668D2FE2AEE484F0000BAF6 /* Extensions */,
 				B69B169B2AEDF20300C79327 /* Utils */,
 				B69B16962AEDE4D700C79327 /* Views */,
@@ -118,6 +151,7 @@
 				B69B16992AEDF04200C79327 /* HomeView.swift */,
 				B69B169C2AEDF2CF00C79327 /* AddSetView.swift */,
 				B668D2FC2AEE32BD0000BAF6 /* SetView.swift */,
+				B60AAF512AF01E0400ACE466 /* DetailedTermSetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +172,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B69B16912AEDE41200C79327 /* Build configuration list for PBXNativeTarget "QuickLearn" */;
 			buildPhases = (
+				B60AAF5D2AF04B9900ACE466 /* ShellScript */,
 				B69B167D2AEDE41000C79327 /* Sources */,
 				B69B167E2AEDE41000C79327 /* Frameworks */,
 				B69B167F2AEDE41000C79327 /* Resources */,
@@ -147,6 +182,9 @@
 			dependencies = (
 			);
 			name = QuickLearn;
+			packageProductDependencies = (
+				B60AAF472AEFF2F300ACE466 /* AlertToast */,
+			);
 			productName = QuickLearn;
 			productReference = B69B16812AEDE41000C79327 /* QuickLearn.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +213,9 @@
 				Base,
 			);
 			mainGroup = B69B16782AEDE41000C79327;
+			packageReferences = (
+				B60AAF462AEFF2F300ACE466 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = B69B16822AEDE41000C79327 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -196,21 +237,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B60AAF5D2AF04B9900ACE466 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B69B167D2AEDE41000C79327 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B60AAF612AF054B300ACE466 /* MultipleChoiceVM.swift in Sources */,
+				B60AAF5A2AF043B000ACE466 /* GenericLearnVM.swift in Sources */,
+				B60AAF632AF0571700ACE466 /* WriteVM.swift in Sources */,
 				B668D3052AEE58F70000BAF6 /* FinishView.swift in Sources */,
 				B69B169A2AEDF04200C79327 /* HomeView.swift in Sources */,
 				B668D30D2AEE616E0000BAF6 /* WriteView.swift in Sources */,
 				B668D3072AEE59300000BAF6 /* LearnType.swift in Sources */,
+				B60AAF4C2AF003BB00ACE466 /* Array+Choose.swift in Sources */,
 				B668D30F2AEE61B60000BAF6 /* WriteSettings.swift in Sources */,
+				B60AAF5C2AF046E400ACE466 /* FlashcardVM.swift in Sources */,
 				B69B16852AEDE41000C79327 /* QuickLearnApp.swift in Sources */,
+				B60AAF522AF01E0400ACE466 /* DetailedTermSetView.swift in Sources */,
 				B69B16982AEDEE5400C79327 /* LearnSet.swift in Sources */,
 				B668D3032AEE57300000BAF6 /* FlashcardView.swift in Sources */,
 				B668D2FD2AEE32BD0000BAF6 /* SetView.swift in Sources */,
 				B69B169D2AEDF2CF00C79327 /* AddSetView.swift in Sources */,
+				B60AAF502AF01C6D00ACE466 /* LearnSettingsView.swift in Sources */,
+				B60AAF4A2AEFF97100ACE466 /* MultipleChoiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +323,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -317,7 +386,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -416,6 +485,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B60AAF462AEFF2F300ACE466 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B60AAF472AEFF2F300ACE466 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B60AAF462AEFF2F300ACE466 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B69B16792AEDE41000C79327 /* Project object */;
 }

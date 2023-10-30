@@ -9,53 +9,36 @@ import SwiftUI
 import AlertToast
 
 struct WriteView: View {
-    var set: LearnSet
-
-    @State var cardIndex = 0 {
-        didSet {
-            answer = ""
-        }
-    }
-
-    @State var writeOrder: WriteOrder = .random
-    @State var writeType: WriteType = .term
-
-    @State var answer = ""
-    @State var showCorrect = false
-    @State var showIncorrect = false
-
-    @State var isFinished = false
+    @StateObject var viewModel: WriteVM
 
     var body: some View {
         NavigationStack {
-            let card = set.setList[cardIndex]
-
             VStack(alignment: .leading) {
-                if isFinished {
-                    FinishView(type: .write, set: set)
+                if viewModel.isFinished {
+                    FinishView(type: .write, set: viewModel.set)
                 } else {
-                    Text("Write \(cardIndex + 1) of \(set.setList.count)")
+                    Text("Write \(viewModel.cardsIn) of \(viewModel.set.setList.count)")
                         .bold()
                         .font(.title2)
                         .padding()
 
                     Spacer()
 
-                    Text(writeType == .term ? "Definition:" : "Term:")
+                    Text(viewModel.writeType == .term ? "Definition:" : "Term:")
                         .bold()
                         .font(.title)
                         .padding()
-                    Text(writeType == .term ? card.definition : card.term)
+                    Text(viewModel.writeType == .term ? viewModel.card.definition : viewModel.card.term)
                         .font(.title3)
                         .padding(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 40))
 
                     Spacer()
 
-                    Text(writeType == .term ? "Term:" : "Definition:")
+                    Text(viewModel.writeType == .term ? "Term:" : "Definition:")
                         .bold()
                         .font(.title2)
                         .padding()
-                    TextField("Answer", text: $answer)
+                    TextField("Answer", text: $viewModel.answer)
                         .autocorrectionDisabled()
                         .padding()
                         .overlay {
@@ -63,13 +46,12 @@ struct WriteView: View {
                                 .stroke(.blue)
                         }
                         .padding()
-                    Spacer()
 
                     HStack {
                         Spacer()
 
                         Button("Check") {
-                            checkAnswer(isButtonPress: true)
+                            viewModel.checkAnswer()
                         }
                         .padding()
                         .overlay {
@@ -83,73 +65,25 @@ struct WriteView: View {
                 }
             }
             .navigationTitle("Write")
-            .disabled(showCorrect)
-            .toast(isPresenting: $showCorrect) {
-                AlertToast(displayMode: .alert, type: .complete(.green), title: "Correct!")
+            .disabled(viewModel.showCorrect)
+            .toast(isPresenting: $viewModel.showCorrect) {
+                viewModel.correctToast
             }
-            .toast(isPresenting: $showIncorrect) {
-                AlertToast(displayMode: .alert,
-                           type: .error(.red),
-                           title: "Incorrect",
-                           subTitle: """
-                                    The correct \(writeType == .term ? "term" : "definition") is: \
-                                    \(writeType == .term ? card.term : card.definition)
-                                    """
-                )
+            .toast(isPresenting: $viewModel.showIncorrect) {
+                viewModel.incorrectToast
             }
-            .onChange(of: answer) {
-               checkAnswer(isButtonPress: false)
+            .sheet(isPresented: $viewModel.showSettingsSheet) {
+                LearnSettingsView(writeType: $viewModel.writeType, writeOrder: $viewModel.writeOrder)
             }
-        }
-    }
-
-    private func checkAnswer(isButtonPress: Bool) {
-        let card = set.setList[cardIndex]
-
-        let correctAnswer = writeType == .term ? card.term : card.definition
-
-        if correctAnswer.lowercased().replacingOccurrences(of: " ", with: "") ==
-            answer.lowercased().replacingOccurrences(of: " ", with: "") {
-
-            withAnimation {
-                showCorrect = true
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        viewModel.showSettingsSheet = true
+                    } label: {
+                        Image(systemName: "gear")
+                    }
+                }
             }
-
-            Task {
-                try? await Task.sleep(nanoseconds: 1_500_000_000)
-
-                showCorrect = false
-
-                increment()
-            }
-
-            set.setList[cardIndex].successCount += 1
-            set.setList[cardIndex].recentFail = false
-        } else if isButtonPress {
-            set.setList[cardIndex].failCount += 1
-            set.setList[cardIndex].recentFail = true
-
-            showIncorrect = true
-
-            Task {
-                try? await Task.sleep(nanoseconds: 3_000_000_000)
-
-                showIncorrect = false
-
-                increment()
-            }
-        }
-    }
-
-    private func increment() {
-        withAnimation {
-            guard cardIndex < set.setList.count - 1 else {
-                return isFinished = true
-            }
-
-            cardIndex += 1
-
-            set.setList[cardIndex].seenCount += 1
         }
     }
 }

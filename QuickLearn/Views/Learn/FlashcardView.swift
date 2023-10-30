@@ -8,41 +8,29 @@
 import SwiftUI
 
 struct FlashcardView: View {
-    var set: LearnSet
-
-    @State var cardIndex = 0
-    @State var isFlipped = false
-
-    @State var isFinished = false
+    @StateObject var viewModel: FlashcardVM
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                if isFinished {
-                    FinishView(type: .flashcards, set: set)
+                if viewModel.isFinished {
+                    FinishView(type: .flashcards, set: viewModel.set)
                 } else {
-                    Text("Card \(cardIndex + 1) of \(set.setList.count)")
+                    Text("Card \(viewModel.cardsIn) of \(viewModel.set.setList.count)")
                         .bold()
                         .font(.title2)
                         .padding()
                     Spacer()
-                    
+
                     Button {
-                        if cardIndex == set.setList.count - 1 && isFlipped {
-                            withAnimation {
-                                isFinished = true
-                            }
-                        } else {
-                            increment()
-                        }
+                        viewModel.increment()
                     } label: {
-                        let card = set.setList[cardIndex]
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text(isFlipped ? "Definition: " : "Term: ")
+                                Text(viewModel.displayTerm ? "Term: " : "Definition: ")
                                     .bold()
                                     .font(.title3)
-                                Text(isFlipped ? card.definition : card.term)
+                                Text(viewModel.displayTerm ? viewModel.card.term : viewModel.card.definition)
                                     .font(.title)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
@@ -57,14 +45,14 @@ struct FlashcardView: View {
                     HStack {
                         Spacer()
                         Button {
-                            decrement()
+                            viewModel.decrement()
                         } label: {
                             Label("Previous", systemImage: "arrow.left")
                         }
-                        .disabled(cardIndex <= 0 && !isFlipped)
+                        .disabled(viewModel.previousCards.count <= 0 && !viewModel.isFlipped)
                         Spacer()
                         Button {
-                            increment()
+                            viewModel.increment()
                         } label: {
                             Label("Next", systemImage: "arrow.right")
                         }
@@ -75,30 +63,18 @@ struct FlashcardView: View {
                 }
             }
             .navigationTitle("Flashcards")
-        }
-    }
-
-    private func increment() {
-        withAnimation {
-            if cardIndex == set.setList.count - 1 && isFlipped {
-                isFinished = true
-            } else {
-                if isFlipped {
-                    cardIndex += 1
+            .sheet(isPresented: $viewModel.showSettingsSheet) {
+                LearnSettingsView(writeType: $viewModel.writeType, writeOrder: $viewModel.writeOrder)
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        viewModel.showSettingsSheet = true
+                    } label: {
+                        Image(systemName: "gear")
+                    }
                 }
-
-                isFlipped.toggle()
             }
-        }
-    }
-
-    private func decrement() {
-        withAnimation {
-            if !isFlipped {
-                cardIndex -= 1
-            }
-
-            isFlipped.toggle()
         }
     }
 }
