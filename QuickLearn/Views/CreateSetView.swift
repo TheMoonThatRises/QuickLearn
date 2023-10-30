@@ -18,7 +18,11 @@ struct CreateSetView: View {
     @State var setLists: [TermSet] = [.init(term: "", definition: "")]
 
     var canSubmit: Bool {
-        !setName.isEmpty && !setDescription.isEmpty
+        !setName.isEmpty &&
+        (
+            !setDescription.isEmpty ||
+            (!(setLists.first?.term.isEmpty ?? true) || !(setLists.first?.definition.isEmpty ?? true))
+        )
     }
 
     var body: some View {

@@ -36,10 +36,10 @@ struct HomeView: View {
                             LearnSetView(set: item, delete: deleteItem)
                         } label: {
                             VStack(alignment: .leading) {
-                                Text(item.name)
+                                Text(item.name.isEmpty ? "(No Name)" : item.name)
                                     .bold()
                                     .font(.title)
-                                Text(item.desc)
+                                Text(item.desc.isEmpty ? "(No Desc)" : item.desc)
                                     .font(.caption)
                                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
                                 Spacer()
