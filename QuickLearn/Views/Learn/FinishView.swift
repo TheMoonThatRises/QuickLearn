@@ -76,6 +76,7 @@ struct FinishView: View {
                                         Text(set.term)
                                         Spacer()
                                         Text(set.definition)
+                                            .padding()
                                         Image(systemName: "checkmark")
                                             .foregroundStyle(.green)
                                     }
