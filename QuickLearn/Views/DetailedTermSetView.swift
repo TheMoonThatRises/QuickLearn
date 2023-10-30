@@ -61,7 +61,7 @@ struct DetailedTermSetView: View {
                 GridRow {
                     Text("Recently failed")
                     Spacer()
-                    Text(termSet.recentFail ? "true" : "false")
+                    Text(termSet.recentFail ? "True" : "False")
                 }
             }
             .navigationTitle("TermSet \(termSet.id)")
