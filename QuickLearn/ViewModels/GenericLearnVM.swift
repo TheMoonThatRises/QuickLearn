@@ -31,8 +31,8 @@ class GenericLearnVM: ObservableObject {
 
     @Published var showSettingsSheet = false
 
-    @AppStorage("writeType") var writeType: WriteType = .term
-    @AppStorage("writeOrder") var writeOrder: WriteOrder = .inOrder {
+    @AppStorage("writeType") var writeType: TypeSetting = .term
+    @AppStorage("writeOrder") var writeOrder: OrderSetting = .inOrder {
         didSet {
             generateIndexes()
         }

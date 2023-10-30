@@ -10,14 +10,14 @@ import SwiftUI
 struct LearnSettingsView: View {
     @Environment(\.dismiss) var dismiss
 
-    @Binding var writeType: WriteType
-    @Binding var writeOrder: WriteOrder
+    @Binding var writeType: TypeSetting
+    @Binding var writeOrder: OrderSetting
 
     var body: some View {
         NavigationStack {
             List {
                 Picker("Learn Content", selection: $writeType) {
-                    ForEach(WriteType.allCases, id: \.self) { option in
+                    ForEach(TypeSetting.allCases, id: \.self) { option in
                         HStack {
                             Text(option.rawValue)
                         }
@@ -26,7 +26,7 @@ struct LearnSettingsView: View {
                     .pickerStyle(.menu)
                 }
                 Picker("Order", selection: $writeOrder) {
-                    ForEach(WriteOrder.allCases, id: \.self) { option in
+                    ForEach(OrderSetting.allCases, id: \.self) { option in
                         HStack {
                             Text(option.rawValue)
                         }
