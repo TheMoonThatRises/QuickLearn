@@ -51,6 +51,7 @@
 		B668D30C2AEE616E0000BAF6 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		B668D30E2AEE61B60000BAF6 /* SettingsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEnum.swift; sourceTree = "<group>"; };
 		B67054752AF0043600C9697A /* CodableLearnSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLearnSet.swift; sourceTree = "<group>"; };
+		B67054772AF00A1F00C9697A /* QuickLearn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLearn.entitlements; sourceTree = "<group>"; };
 		B69B16812AEDE41000C79327 /* QuickLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69B16842AEDE41000C79327 /* QuickLearnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLearnApp.swift; sourceTree = "<group>"; };
 		B69B168A2AEDE41200C79327 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		B69B16832AEDE41000C79327 /* QuickLearn */ = {
 			isa = PBXGroup;
 			children = (
+				B67054772AF00A1F00C9697A /* QuickLearn.entitlements */,
 				B60AAF582AF043A600ACE466 /* ViewModels */,
 				B668D2FE2AEE484F0000BAF6 /* Extensions */,
 				B69B169B2AEDF20300C79327 /* Utils */,
@@ -426,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickLearn/QuickLearn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuickLearn/Preview Content\"";
@@ -444,6 +447,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.themoonthatrises.QuickLearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -455,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuickLearn/QuickLearn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuickLearn/Preview Content\"";
@@ -473,6 +480,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.themoonthatrises.QuickLearn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
