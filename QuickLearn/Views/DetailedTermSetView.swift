@@ -65,6 +65,7 @@ struct DetailedTermSetView: View {
                 }
             }
             .navigationTitle("TermSet \(termSet.id)")
+            .padding()
         }
     }
 }

@@ -8,8 +8,10 @@
 import SwiftUI
 import AlertToast
 
-struct SetView: View {
+struct LearnSetView: View {
     @Bindable var set: LearnSet
+
+    var delete: (LearnSet) -> Void
 
     @State var showExportSuccess = false
     @State var showExportError = false
@@ -135,7 +137,7 @@ struct SetView: View {
                 ToolbarItem {
                     Menu {
                         Button {
-
+                            delete(set)
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }

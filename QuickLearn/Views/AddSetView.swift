@@ -66,7 +66,7 @@ struct AddSetView: View {
                     Text("LearnSet Cards")
                 }
             }
-            .navigationTitle("Add New Set")
+            .navigationTitle("Add New LearnSet")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {

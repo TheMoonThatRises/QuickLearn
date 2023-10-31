@@ -14,29 +14,70 @@ struct HomeView: View {
 
     @State var showAddSheet = false
 
+    @State var deleteItem: LearnSet? {
+        didSet {
+            if deleteItem != nil {
+                confirmDelete = true
+            }
+        }
+    }
+    @State var confirmDelete = false
+
     var body: some View {
         NavigationStack {
             List {
-                ForEach(learnSets) { item in
-                    NavigationLink {
-                        SetView(set: item)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .bold()
-                                .font(.title)
-                            Text(item.desc)
-                                .font(.caption)
-                                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
-                            Spacer()
-                            Text("LearnSet Cards Count: \(item.setList.count)")
-                                .font(.callout)
+                if learnSets.count > 0 {
+                    ForEach(learnSets) { item in
+                        NavigationLink {
+                            LearnSetView(set: item, delete: deleteItem)
+                        } label: {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .bold()
+                                    .font(.title)
+                                Text(item.desc)
+                                    .font(.caption)
+                                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                                Spacer()
+                                Text("LearnSet Cards Count: \(item.setList.count)")
+                                    .font(.callout)
+                            }
                         }
                     }
+                    .onDelete(perform: deleteItems)
+                } else {
+                    Button {
+                        showAddSheet = true
+                    } label: {
+                        VStack {
+                            Image(systemName: "plus")
+                                .foregroundStyle(.blue)
+                            Spacer()
+                            Text("Add LearnSet")
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(.blue)
+                        }
+                        .padding()
+                    }
                 }
-                .onDelete(perform: deleteItems)
             }
             .navigationTitle("Home")
+            .confirmationDialog("Are you sure you want to delete this LearnSet?",
+                                isPresented: $confirmDelete,
+                                presenting: deleteItem) { item in
+                Button("Delete LearnSet \(item.name)?", role: .destructive) {
+                    withAnimation {
+                        modelContext.delete(item)
+                    }
+                }
+                Button("Cancel", role: .cancel) {
+                    deleteItem = nil
+                }
+            }
             .toolbar {
                 ToolbarItem {
                     EditButton()
@@ -62,10 +103,12 @@ struct HomeView: View {
     }
 
     private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(learnSets[index])
-            }
+        for index in offsets {
+            deleteItem = learnSets[index]
         }
+    }
+
+    private func deleteItem(set: LearnSet) {
+        deleteItem = set
     }
 }
