@@ -32,7 +32,7 @@ struct DetailedTermSetView: View {
                 }
                 Divider()
                 GridRow {
-                    Text("Is starred")
+                    Text("Starred")
                     Spacer()
                     Toggle("",
                            systemImage: termSet.isStarred ? "star.fill" : "star",
@@ -41,27 +41,30 @@ struct DetailedTermSetView: View {
                 }
                 Divider()
                 GridRow {
-                    Text("Seen count")
+                    Text("Reviewed")
                     Spacer()
                     Text("\(termSet.seenCount)")
                 }
                 Divider()
                 GridRow {
-                    Text("Success count")
+                    Text("Passed")
                     Spacer()
                     Text("\(termSet.successCount)")
+                        .foregroundStyle(.green)
                 }
                 Divider()
                 GridRow {
-                    Text("Failed count")
+                    Text("Failed")
                     Spacer()
                     Text("\(termSet.failCount)")
+                        .foregroundStyle(.red)
                 }
                 Divider()
                 GridRow {
-                    Text("Recently failed")
+                    Text("Recently Failed")
                     Spacer()
-                    Text(termSet.recentFail ? "True" : "False")
+                    Text(termSet.recentFail ? "Yes" : "No")
+                        .foregroundStyle(termSet.recentFail ? .red : .green)
                 }
             }
             .navigationTitle("TermSet \(termSet.id)")
