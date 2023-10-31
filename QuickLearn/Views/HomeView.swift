@@ -12,7 +12,9 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var learnSets: [LearnSet]
 
-    @State var showAddSheet = false
+    @State var confirmCreateSet = false
+    @State var showCreateSheet = false
+    @State var showImportSheet = false
 
     @State var deleteItem: LearnSet? {
         didSet {
@@ -22,6 +24,8 @@ struct HomeView: View {
         }
     }
     @State var confirmDelete = false
+
+    @State var showSetView = false
 
     var body: some View {
         NavigationStack {
@@ -47,13 +51,13 @@ struct HomeView: View {
                     .onDelete(perform: deleteItems)
                 } else {
                     Button {
-                        showAddSheet = true
+                        confirmCreateSet = true
                     } label: {
                         VStack {
                             Image(systemName: "plus")
                                 .foregroundStyle(.blue)
                             Spacer()
-                            Text("Add LearnSet")
+                            Text("Create New LearnSet")
                         }
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -69,7 +73,7 @@ struct HomeView: View {
             .confirmationDialog("Are you sure you want to delete this LearnSet?",
                                 isPresented: $confirmDelete,
                                 presenting: deleteItem) { item in
-                Button("Delete LearnSet \(item.name)?", role: .destructive) {
+                Button("Delete LearnSet \(item.name)", role: .destructive) {
                     withAnimation {
                         modelContext.delete(item)
                     }
@@ -78,20 +82,34 @@ struct HomeView: View {
                     deleteItem = nil
                 }
             }
+            .confirmationDialog("Create LearnSet", isPresented: $confirmCreateSet) {
+                Button("Create New LearnSet") {
+                    showCreateSheet = true
+                }
+                Button("Import LearnSet") {
+                    showImportSheet = true
+                }
+                Button("Cancel", role: .cancel) {
+                    confirmCreateSet = false
+                }
+            }
             .toolbar {
                 ToolbarItem {
                     EditButton()
                 }
                 ToolbarItem {
                     Button {
-                        showAddSheet = true
+                        confirmCreateSet = true
                     } label: {
                         Label("Create new set", systemImage: "plus")
                     }
                 }
             }
-            .sheet(isPresented: $showAddSheet) {
-                AddSetView(addItem: addItem)
+            .sheet(isPresented: $showCreateSheet) {
+                CreateSetView(addItem: addItem)
+            }
+            .sheet(isPresented: $showImportSheet) {
+                ImportSetView(addItem: addItem)
             }
         }
     }

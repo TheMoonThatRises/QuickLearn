@@ -9,6 +9,8 @@ import SwiftUI
 import AlertToast
 
 struct LearnSetView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @Bindable var set: LearnSet
 
     var delete: (LearnSet) -> Void
@@ -110,14 +112,20 @@ struct LearnSetView: View {
                         }
                         .disabled(true)
                         .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.accentColor)
+                                .fill(Color.gray.opacity(0.3))
                             Button {
                                 withAnimation {
                                     set.setList.append(.init(term: "", definition: ""))
                                 }
                             } label: {
                                 VStack(alignment: .center) {
+                                    Spacer()
                                     Image(systemName: "plus")
+                                    Spacer()
                                     Text("Add Term")
+                                    Spacer()
                                 }
                             }
                         }
@@ -138,6 +146,7 @@ struct LearnSetView: View {
                     Menu {
                         Button {
                             delete(set)
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }

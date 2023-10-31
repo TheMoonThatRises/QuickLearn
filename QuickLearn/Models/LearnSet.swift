@@ -9,7 +9,13 @@ import Foundation
 import SwiftData
 
 @Model
-class LearnSet {
+class LearnSet: Codable {
+    enum CodingKeys: CodingKey {
+        case name
+        case desc
+        case setList
+    }
+
     @Attribute(.unique) var id: UUID
 
     var name: String
@@ -29,9 +35,30 @@ class LearnSet {
 
         self.setList = setList
     }
+
+    required convenience init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        try self.init(name: container.decode(String.self, forKey: .name),
+                      desc: container.decode(String.self, forKey: .desc),
+                      setList: container.decode([TermSet].self, forKey: .setList))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(name, forKey: .name)
+        try container.encode(desc, forKey: .desc)
+        try container.encode(setList, forKey: .setList)
+    }
 }
 
 struct TermSet: Codable, Identifiable, Equatable {
+    enum CodingKeys: CodingKey {
+        case term
+        case definition
+    }
+
     var id: UUID
 
     var term: String
@@ -57,6 +84,20 @@ struct TermSet: Codable, Identifiable, Equatable {
         self.failCount = 0
 
         self.recentFail = false
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.init(term: try container.decode(String.self, forKey: .term),
+                  definition: try container.decode(String.self, forKey: .definition))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(term, forKey: .term)
+        try container.encode(definition, forKey: .definition)
     }
 }
 
