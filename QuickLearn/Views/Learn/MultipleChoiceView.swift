@@ -52,7 +52,7 @@ struct MultipleChoiceView: View {
                                             .frame(width: geom.size.width / 5 * 2)
                                             .overlay {
                                                 RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(.blue)
+                                                    .stroke(Color.accentColor)
                                             }
                                             .padding()
                                     }

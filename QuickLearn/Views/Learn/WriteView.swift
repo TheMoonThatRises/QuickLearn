@@ -43,7 +43,7 @@ struct WriteView: View {
                         .padding()
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(.blue)
+                                .stroke(Color.accentColor)
                         }
                         .padding()
 
@@ -56,7 +56,7 @@ struct WriteView: View {
                         .padding()
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(.blue)
+                                .stroke(Color.accentColor)
                         }
                         .padding()
                     }

@@ -46,6 +46,7 @@ struct HomeView: View {
                                 Text("LearnSet Cards Count: \(item.setList.count)")
                                     .font(.callout)
                             }
+                            .padding()
                         }
                     }
                     .onDelete(perform: deleteItems)
@@ -55,7 +56,7 @@ struct HomeView: View {
                     } label: {
                         VStack {
                             Image(systemName: "plus")
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(Color.accentColor)
                             Spacer()
                             Text("Create New LearnSet")
                         }
@@ -63,7 +64,7 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(.blue)
+                                .stroke(Color.accentColor)
                         }
                         .padding()
                     }
