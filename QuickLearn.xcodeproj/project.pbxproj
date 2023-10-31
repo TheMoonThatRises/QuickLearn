@@ -28,8 +28,9 @@
 		B69B168E2AEDE41200C79327 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B69B168D2AEDE41200C79327 /* Preview Assets.xcassets */; };
 		B69B16982AEDEE5400C79327 /* LearnSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B16972AEDEE5400C79327 /* LearnSet.swift */; };
 		B69B169A2AEDF04200C79327 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B16992AEDF04200C79327 /* HomeView.swift */; };
-		B69B169D2AEDF2CF00C79327 /* AddSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B169C2AEDF2CF00C79327 /* AddSetView.swift */; };
+		B69B169D2AEDF2CF00C79327 /* CreateSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B169C2AEDF2CF00C79327 /* CreateSetView.swift */; };
 		B6C4F9402AF0730900C87515 /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C4F93F2AF0730900C87515 /* String+Error.swift */; };
+		B6C4F9462AF084AE00C87515 /* ImportSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C4F9452AF084AE00C87515 /* ImportSetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +55,9 @@
 		B69B168D2AEDE41200C79327 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B69B16972AEDEE5400C79327 /* LearnSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSet.swift; sourceTree = "<group>"; };
 		B69B16992AEDF04200C79327 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B69B169C2AEDF2CF00C79327 /* AddSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetView.swift; sourceTree = "<group>"; };
+		B69B169C2AEDF2CF00C79327 /* CreateSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetView.swift; sourceTree = "<group>"; };
 		B6C4F93F2AF0730900C87515 /* String+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
+		B6C4F9452AF084AE00C87515 /* ImportSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,9 +156,10 @@
 			children = (
 				B668D3012AEE57270000BAF6 /* Learn */,
 				B69B16992AEDF04200C79327 /* HomeView.swift */,
-				B69B169C2AEDF2CF00C79327 /* AddSetView.swift */,
+				B69B169C2AEDF2CF00C79327 /* CreateSetView.swift */,
 				B668D2FC2AEE32BD0000BAF6 /* LearnSetView.swift */,
 				B60AAF512AF01E0400ACE466 /* DetailedTermSetView.swift */,
+				B6C4F9452AF084AE00C87515 /* ImportSetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,11 +286,12 @@
 				B69B16982AEDEE5400C79327 /* LearnSet.swift in Sources */,
 				B668D3032AEE57300000BAF6 /* FlashcardView.swift in Sources */,
 				B668D2FD2AEE32BD0000BAF6 /* LearnSetView.swift in Sources */,
-				B69B169D2AEDF2CF00C79327 /* AddSetView.swift in Sources */,
+				B69B169D2AEDF2CF00C79327 /* CreateSetView.swift in Sources */,
 				B60AAF502AF01C6D00ACE466 /* LearnSettingsView.swift in Sources */,
 				B6C4F9402AF0730900C87515 /* String+Error.swift in Sources */,
 				B60AAF4A2AEFF97100ACE466 /* MultipleChoiceView.swift in Sources */,
 				B60AAF652AF060D600ACE466 /* SaveLoad.swift in Sources */,
+				B6C4F9462AF084AE00C87515 /* ImportSetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  AddSetView.swift
+//  CreateSetView.swift
 //  QuickLearn
 //
 //  Created by TheMoonThatRises on 10/28/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddSetView: View {
+struct CreateSetView: View {
     @Environment(\.dismiss) var dismiss
 
     var addItem: (LearnSet) -> Void
@@ -28,7 +28,7 @@ struct AddSetView: View {
                     TextField("LearnSet Name (e.g. AP Biology Vocab)", text: $setName)
                     TextField("LearnSet Description (e.g. List to study for vocab test)", text: $setDescription)
                 } header: {
-                    Text("Metadata")
+                    Text("Info")
                 }
                 Section {
                     ForEach($setLists) { set in
@@ -51,14 +51,20 @@ struct AddSetView: View {
                     }
                     .disabled(true)
                     .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.accentColor)
+                            .fill(Color.gray.opacity(0.3))
                         Button {
                             withAnimation {
                                 setLists.append(.init(term: "", definition: ""))
                             }
                         } label: {
                             VStack(alignment: .center) {
+                                Spacer()
                                 Image(systemName: "plus")
+                                Spacer()
                                 Text("Add Term")
+                                Spacer()
                             }
                         }
                     }
@@ -66,7 +72,7 @@ struct AddSetView: View {
                     Text("LearnSet Cards")
                 }
             }
-            .navigationTitle("Add New LearnSet")
+            .navigationTitle("Create New LearnSet")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
