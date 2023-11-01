@@ -22,6 +22,7 @@ class FlashcardVM: GenericLearnVM {
             } else {
                 if isFlipped {
                     cardIndex = allIndexes.removeFirst()
+                    set.setList[cardIndex].seenCount += 1
                     previousCards.append(cardIndex)
                 }
 
