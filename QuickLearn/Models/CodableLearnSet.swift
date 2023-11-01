@@ -45,7 +45,7 @@ class CodableLearnSet: Codable {
     public static func fromLearnSet(set: LearnSet) -> CodableLearnSet {
         CodableLearnSet(name: set.name,
                         desc: set.desc,
-                        setList: set.setList.map{ CodableTermSet.fromTermSet(termSet: $0) })
+                        setList: set.setList.map { CodableTermSet.fromTermSet(termSet: $0) })
     }
 
     public static func toLearnSet(set: CodableLearnSet) -> LearnSet {
