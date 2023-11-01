@@ -26,7 +26,7 @@ class SaveLoad {
                 return nil
             }
         default:
-            guard let data = data.data(using: .ascii) else {
+            guard let data = data.data(using: .utf8) else {
                 return nil
             }
 
@@ -35,7 +35,7 @@ class SaveLoad {
     }
 
     public static func encode(set: LearnSet) throws -> String? {
-        return try String(data: propertyEncoder.encode(CodableLearnSet.fromLearnSet(set: set)), encoding: .ascii)
+        return try String(data: propertyEncoder.encode(CodableLearnSet.fromLearnSet(set: set)), encoding: .utf8)
     }
 }
 
