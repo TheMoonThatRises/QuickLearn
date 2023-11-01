@@ -19,9 +19,5 @@
 import Foundation
 
 class WriteVM: GenericLearnVM {
-    override var answer: String {
-        didSet {
-            checkAnswer(canFail: false)
-        }
-    }
+
 }

@@ -100,6 +100,9 @@ struct WriteView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.answer) {
+                viewModel.checkAnswer(canFail: false)
+            }
         }
     }
 }
