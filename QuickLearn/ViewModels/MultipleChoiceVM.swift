@@ -24,7 +24,7 @@ class MultipleChoiceVM: GenericLearnVM {
 
     func generatePossible() {
         var answers: [TermSet] = [set.setList[cardIndex]]
-        answers.append(contentsOf: set.setList.filter { $0 != answers.first }.shuffled().choose(3))
+        answers.append(contentsOf: set.setList.filter { $0 != answers.first }.choose(3))
 
         possibleAnswers = answers.shuffled()
     }

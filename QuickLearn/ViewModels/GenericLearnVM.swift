@@ -12,6 +12,7 @@ import AlertToast
 class GenericLearnVM: ObservableObject {
     @Bindable var set: LearnSet
     @Published var allIndexes: [Int] = []
+    @Published var originalSet: [TermSet] = []
 
     @Published var cardIndex = 0
     @Published var isFlipped = false
@@ -26,13 +27,13 @@ class GenericLearnVM: ObservableObject {
     }
 
     var cardsIn: Int {
-        self.set.setList.count - allIndexes.count
+        originalSet.count - allIndexes.count
     }
 
     @Published var showSettingsSheet = false
 
     @AppStorage("writeType") var writeType: TypeSetting = .term
-    @AppStorage("writeOrder") var writeOrder: OrderSetting = .inOrder {
+    @AppStorage("writeOrder") var writeOrder: OrderSetting = .random {
         didSet {
             generateIndexes()
         }
@@ -40,6 +41,7 @@ class GenericLearnVM: ObservableObject {
 
     @Published var showCorrect = false
     @Published var showIncorrect = false
+    @Published var showNoStars = false
 
     @Published var isFinished = false
 
@@ -58,17 +60,32 @@ class GenericLearnVM: ObservableObject {
         )
     }
 
+    var noStarsToast: AlertToast {
+        AlertToast(displayMode: .banner(.pop), type: .error(.red), title: "No starred terms, using random order")
+    }
+
     init(set: Bindable<LearnSet>) {
         self._set = set
         generateIndexes()
     }
 
     func generateIndexes() {
-        allIndexes = Array(0...(set.setList.count - 1))
+        switch writeOrder {
+        case .inOrder:
+            allIndexes = Array(0...(set.setList.count - 1))
+        case .random:
+            allIndexes = set.setList.weightedShuffle().map { set.setList.firstIndex(of: $0)! }
+        case .star:
+            allIndexes = set.setList.filter { $0.isStarred }.weightedShuffle().map { set.setList.firstIndex(of: $0)! }
 
-        if writeOrder == .random {
-            allIndexes.shuffle()
+            if allIndexes.isEmpty {
+                writeOrder = .random
+                showNoStars = true
+                generateIndexes()
+            }
         }
+
+        originalSet = allIndexes.map { set.setList[$0] }
 
         cardIndex = allIndexes.removeFirst()
     }
