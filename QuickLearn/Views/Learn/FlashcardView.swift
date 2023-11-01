@@ -12,57 +12,67 @@ struct FlashcardView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                if viewModel.isFinished {
-                    FinishView(type: .flashcards, set: viewModel.set)
-                } else {
-                    Text("Card \(viewModel.cardsIn) of \(viewModel.set.setList.count)")
-                        .bold()
-                        .font(.title2)
-                        .padding()
-                    Spacer()
+            GeometryReader { viewGeom in
+                VStack(alignment: .leading) {
+                    if viewModel.isFinished {
+                        FinishView(type: .flashcards, viewedCards: viewModel.originalSet)
+                    } else {
+                        Text("Card \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
+                            .bold()
+                            .font(.title2)
+                            .padding()
+                        Spacer()
 
-                    Button {
-                        viewModel.increment()
-                    } label: {
                         HStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(viewModel.displayTerm ? "Term: " : "Definition: ")
-                                    .bold()
-                                    .font(.title3)
-                                Text(viewModel.displayTerm ? viewModel.card.term : viewModel.card.definition)
-                                    .font(.title)
-                                    .frame(maxWidth: .infinity, alignment: .center)
+                            Spacer()
+                            Button {
+                                viewModel.increment()
+                            } label: {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(viewModel.displayTerm ? "Term: " : "Definition: ")
+                                        .bold()
+                                        .font(.title3)
+                                    Text(viewModel.displayTerm ? viewModel.card.term : viewModel.card.definition)
+                                        .font(.title)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                    Spacer()
+                                        .frame(height: 20)
+                                }
+                                .padding()
+                                .frame(maxWidth: viewGeom.size.width * 3 / 4)
+                                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
+                                .padding()
                             }
+                            .buttonStyle(.plain)
                             Spacer()
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10))
-                        .padding()
-                    }
-                    .buttonStyle(.plain)
-                    HStack {
-                        Spacer()
-                        Button {
-                            viewModel.decrement()
-                        } label: {
-                            Label("Previous", systemImage: "arrow.left")
+                        HStack {
+                            Spacer()
+                            Button {
+                                viewModel.decrement()
+                            } label: {
+                                Label("Previous", systemImage: "arrow.left")
+                            }
+                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
+                            .disabled(viewModel.previousCards.count <= 0 && !viewModel.isFlipped)
+                            Spacer()
+                            Button {
+                                viewModel.increment()
+                            } label: {
+                                Label("Next", systemImage: "arrow.right")
+                            }
+                            .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
+                            Spacer()
                         }
-                        .disabled(viewModel.previousCards.count <= 0 && !viewModel.isFlipped)
-                        Spacer()
-                        Button {
-                            viewModel.increment()
-                        } label: {
-                            Label("Next", systemImage: "arrow.right")
-                        }
+                        .buttonStyle(.plain)
                         Spacer()
                     }
-                    .buttonStyle(.plain)
-                    Spacer()
                 }
             }
             .navigationTitle("Flashcards")
+            .toast(isPresenting: $viewModel.showNoStars) {
+                viewModel.noStarsToast
+            }
             .sheet(isPresented: $viewModel.showSettingsSheet) {
                 LearnSettingsView(writeType: $viewModel.writeType, writeOrder: $viewModel.writeOrder)
             }

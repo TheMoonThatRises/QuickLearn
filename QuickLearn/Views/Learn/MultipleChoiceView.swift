@@ -16,9 +16,9 @@ struct MultipleChoiceView: View {
             GeometryReader { geom in
                 VStack(alignment: .leading) {
                     if viewModel.isFinished {
-                        FinishView(type: .multiple, set: viewModel.set)
+                        FinishView(type: .multiple, viewedCards: viewModel.originalSet)
                     } else {
-                        Text("Write \(viewModel.cardsIn) of \(viewModel.set.setList.count)")
+                        Text("Write \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                             .bold()
                             .font(.title2)
                             .padding()
@@ -27,17 +27,17 @@ struct MultipleChoiceView: View {
 
                         Text(viewModel.writeType == .term ? "Definition:" : "Term:")
                             .bold()
-                            .font(.title)
+                            .font(.title3)
                             .padding()
                         Text(viewModel.writeType == .term ? viewModel.card.definition : viewModel.card.term)
-                            .font(.title3)
+                            .font(.title)
                             .padding(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 40))
 
                         Spacer()
 
                         Text(viewModel.writeType == .term ? "Term:" : "Definition:")
                             .bold()
-                            .font(.title2)
+                            .font(.title3)
                             .padding()
 
                         ScrollView {
@@ -48,6 +48,7 @@ struct MultipleChoiceView: View {
                                         viewModel.answer = answerAnswer
                                     } label: {
                                         Text(answerAnswer)
+                                            .font(.title2)
                                             .padding()
                                             .frame(width: geom.size.width / 5 * 2)
                                             .overlay {
@@ -72,6 +73,9 @@ struct MultipleChoiceView: View {
             }
             .toast(isPresenting: $viewModel.showIncorrect, tapToDismiss: false) {
                 viewModel.incorrectToast
+            }
+            .toast(isPresenting: $viewModel.showNoStars) {
+                viewModel.noStarsToast
             }
             .sheet(isPresented: $viewModel.showSettingsSheet) {
                 LearnSettingsView(writeType: $viewModel.writeType, writeOrder: $viewModel.writeOrder)

@@ -9,28 +9,29 @@ import SwiftUI
 
 struct FinishView: View {
     var type: LearnType
-    var set: LearnSet
+
+    var viewedCards: [TermSet]
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 switch type {
                 case .flashcards:
-                    Text("You finished all \(set.setList.count) of the flashcards!")
+                    Text("You finished all \(viewedCards.count) of the flashcards!")
                         .bold()
                         .font(.title)
                 case .write, .multiple:
                     let dtype = type == .write ? "writing" : "multiple choice"
 
-                    Text("You finished all \(set.setList.count) \(dtype) terms!")
+                    Text("You finished all \(viewedCards.count) \(dtype) terms!")
                         .bold()
                         .font(.title)
 
                     Spacer()
 
                     VStack(alignment: .leading) {
-                        let incorrect = set.setList.filter { $0.recentFail }
-                        let correct = set.setList.filter { !incorrect.contains($0) }
+                        let incorrect = viewedCards.filter { $0.recentFail }
+                        let correct = viewedCards.filter { !incorrect.contains($0) }
 
                         if incorrect.count > 0 {
                             Text("Incorrect:")
@@ -91,6 +92,7 @@ struct FinishView: View {
                     Spacer()
                 }
             }
+            .padding()
             .navigationTitle("Congratulations!")
         }
     }

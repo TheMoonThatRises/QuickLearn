@@ -15,9 +15,9 @@ struct WriteView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 if viewModel.isFinished {
-                    FinishView(type: .write, set: viewModel.set)
+                    FinishView(type: .write, viewedCards: viewModel.originalSet)
                 } else {
-                    Text("Write \(viewModel.cardsIn) of \(viewModel.set.setList.count)")
+                    Text("Write \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                         .bold()
                         .font(.title2)
                         .padding()
@@ -73,6 +73,9 @@ struct WriteView: View {
             }
             .toast(isPresenting: $viewModel.showIncorrect, tapToDismiss: false) {
                 viewModel.incorrectToast
+            }
+            .toast(isPresenting: $viewModel.showNoStars) {
+                viewModel.noStarsToast
             }
             .sheet(isPresented: $viewModel.showSettingsSheet) {
                 LearnSettingsView(writeType: $viewModel.writeType, writeOrder: $viewModel.writeOrder)
