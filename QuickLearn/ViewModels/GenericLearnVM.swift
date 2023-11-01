@@ -102,8 +102,6 @@ class GenericLearnVM: ObservableObject {
     }
 
     func checkAnswer(canFail: Bool = true) {
-        let card = set.setList[cardIndex]
-
         let correctAnswer = writeType == .term ? card.term : card.definition
 
         if correctAnswer.lowercased().replacingOccurrences(of: " ", with: "") ==
