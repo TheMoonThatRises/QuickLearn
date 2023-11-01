@@ -160,6 +160,7 @@ struct LearnSetView: View {
 
                                 showExportSuccess = true
                             } catch {
+                                print(error)
                                 showExportError = true
                             }
                         } label: {

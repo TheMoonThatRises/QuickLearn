@@ -95,6 +95,7 @@ struct ImportSetView: View {
                                         throw "decode is nil"
                                     }
                                 } catch {
+                                    print(error)
                                     showFailDecode = true
                                 }
                             }
