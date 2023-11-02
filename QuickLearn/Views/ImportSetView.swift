@@ -66,9 +66,7 @@ struct ImportSetView: View {
                         Text("Import Information")
                     }
                     Section {
-                        GroupBox {
-                            TextField("Import string", text: $importString, axis: .vertical)
-                        }
+                        TextField("Import string", text: $importString, axis: .vertical)
                     } header: {
                         Text("Import Value")
                     }

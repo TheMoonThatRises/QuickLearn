@@ -27,21 +27,15 @@ struct DetailedTermSetView: View {
                 GridRow {
                     Text("Term")
                     Spacer()
-                    GroupBox {
-                        TextField("", text: $termSet.term, axis: .vertical)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .padding()
+                    TextField("", text: $termSet.term, axis: .vertical)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Divider()
                 GridRow {
                     Text("Definition")
                     Spacer()
-                    GroupBox {
-                        TextField("", text: $termSet.definition, axis: .vertical)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .padding()
+                    TextField("", text: $termSet.definition, axis: .vertical)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Divider()
                 GridRow {
