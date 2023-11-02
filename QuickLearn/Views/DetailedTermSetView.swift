@@ -29,6 +29,7 @@ struct DetailedTermSetView: View {
                     Spacer()
                     GroupBox {
                         TextField("", text: $termSet.term, axis: .vertical)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     .padding()
                 }
@@ -38,6 +39,7 @@ struct DetailedTermSetView: View {
                     Spacer()
                     GroupBox {
                         TextField("", text: $termSet.definition, axis: .vertical)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     .padding()
                 }

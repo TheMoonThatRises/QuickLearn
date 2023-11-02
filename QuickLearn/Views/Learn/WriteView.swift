@@ -40,6 +40,7 @@ struct WriteView: View {
                         .font(.title)
                         .padding()
                     Text(viewModel.writeType == .term ? viewModel.card.definition : viewModel.card.term)
+                        .fixedSize(horizontal: false, vertical: true)
                         .font(.title3)
                         .padding(EdgeInsets(top: 0, leading: 60, bottom: 0, trailing: 40))
 
