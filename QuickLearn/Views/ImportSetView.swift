@@ -57,7 +57,9 @@ struct ImportSetView: View {
                         }
                         Group {
                             TextField("Term/Definition Deliminator (tab)", text: $termDeliminator)
+                                .submitLabel(.done)
                             TextField("Set Deliminator (new line)", text: $setDeliminator)
+                                .submitLabel(.done)
                         }
                         .disabled(importType == .json)
                     } header: {

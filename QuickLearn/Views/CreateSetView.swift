@@ -41,7 +41,9 @@ struct CreateSetView: View {
             Form {
                 Section {
                     TextField("LearnSet Name (e.g. AP Biology Vocab)", text: $setName)
+                        .submitLabel(.done)
                     TextField("LearnSet Description (e.g. List to study for vocab test)", text: $setDescription)
+                        .submitLabel(.done)
                 } header: {
                     Text("Info")
                 }

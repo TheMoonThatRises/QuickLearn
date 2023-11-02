@@ -51,6 +51,10 @@ struct WriteView: View {
                         .font(.title2)
                         .padding()
                     TextField("Answer", text: $viewModel.answer)
+                        .submitLabel(.send)
+                        .onSubmit {
+                            viewModel.checkAnswer()
+                        }
                         .disabled(viewModel.showCorrect || viewModel.showIncorrect)
                         .autocorrectionDisabled()
                         .padding()

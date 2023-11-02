@@ -35,6 +35,7 @@ struct LearnSetView: View {
                 Section {
                     TextField("", text: $set.desc)
                         .font(.title3)
+                        .submitLabel(.done)
                 } header: {
                     Text("Description")
                 }
