@@ -26,7 +26,7 @@ struct FlashcardView: View {
             GeometryReader { viewGeom in
                 VStack(alignment: .leading) {
                     if viewModel.isFinished {
-                        FinishView(type: .flashcards, viewedCards: viewModel.originalSet)
+                        FinishView(type: .flashcards, viewedCards: viewModel.originalCards)
                     } else {
                         Text("Card \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                             .bold()

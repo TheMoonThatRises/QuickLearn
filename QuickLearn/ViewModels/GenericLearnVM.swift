@@ -23,12 +23,19 @@ import AlertToast
 class GenericLearnVM: ObservableObject {
     @Bindable var set: LearnSet
     @Published var allIndexes: [Int] = []
-    @Published var originalSet: [TermSet] = []
+    @Published var originalSet: [UUID] = []
 
     @Published var cardIndex = 0
     @Published var isFlipped = false
 
     @Published var answer = ""
+
+    var originalCards: [TermSet] {
+        // swiftlint:disable:next implicit_getter
+        get {
+            set.setList.filter { originalSet.contains($0.id) }
+        }
+    }
 
     var card: TermSet {
         // swiftlint:disable:next implicit_getter
@@ -96,7 +103,7 @@ class GenericLearnVM: ObservableObject {
             }
         }
 
-        originalSet = allIndexes.map { set.setList[$0] }
+        originalSet = allIndexes.map { set.setList[$0].id }
 
         cardIndex = allIndexes.removeFirst()
     }

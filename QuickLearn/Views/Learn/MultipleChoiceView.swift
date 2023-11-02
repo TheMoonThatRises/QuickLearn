@@ -27,7 +27,7 @@ struct MultipleChoiceView: View {
             GeometryReader { geom in
                 VStack(alignment: .leading) {
                     if viewModel.isFinished {
-                        FinishView(type: .multiple, viewedCards: viewModel.originalSet)
+                        FinishView(type: .multiple, viewedCards: viewModel.originalCards)
                     } else {
                         Text("Write \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                             .bold()
