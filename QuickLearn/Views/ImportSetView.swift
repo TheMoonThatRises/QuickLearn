@@ -31,7 +31,7 @@ struct ImportSetView: View {
     @State var setLists: [TermSet] = []
 
     @State var importString = ""
-    @AppStorage("importType") var importType: LoadType = .json
+    @AppStorage("importType") var importType: LoadType = .deliminator
     @State var termDeliminator = ""
     @State var setDeliminator = ""
 
