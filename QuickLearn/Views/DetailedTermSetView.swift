@@ -23,55 +23,66 @@ struct DetailedTermSetView: View {
 
     var body: some View {
         NavigationStack {
-            Grid {
-                GridRow {
-                    Text("Term")
-                    Spacer()
-                    TextField("", text: $termSet.term, axis: .vertical)
-                        .fixedSize(horizontal: false, vertical: true)
+            List {
+                Section {
+                    HStack {
+                        Text("Term:")
+                        Spacer()
+                            .frame(width: 10)
+                        TextField("", text: $termSet.term, axis: .vertical)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    HStack {
+                        Text("Definition:")
+                        Spacer()
+                            .frame(width: 10)
+                        TextField("", text: $termSet.definition, axis: .vertical)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    HStack {
+                        Text("Starred:")
+                        Spacer()
+                        Button {
+                            termSet.isStarred.toggle()
+                        } label: {
+                            HStack {
+                                Text(termSet.isStarred ? "Yes" : "No")
+                                Image(systemName: termSet.isStarred ? "star.fill" : "star")
+                                    .foregroundStyle(.yellow)
+                                    .frame(width: 40, height: 40)
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
+                } header: {
+                    Text("Information")
                 }
-                Divider()
-                GridRow {
-                    Text("Definition")
-                    Spacer()
-                    TextField("", text: $termSet.definition, axis: .vertical)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                Divider()
-                GridRow {
-                    Text("Starred")
-                    Spacer()
-                    Toggle("",
-                           systemImage: termSet.isStarred ? "star.fill" : "star",
-                           isOn: $termSet.isStarred
-                    ).labelsHidden()
-                }
-                Divider()
-                GridRow {
-                    Text("Reviewed")
-                    Spacer()
-                    Text("\(termSet.seenCount)")
-                }
-                Divider()
-                GridRow {
-                    Text("Passed")
-                    Spacer()
-                    Text("\(termSet.successCount)")
-                        .foregroundStyle(.green)
-                }
-                Divider()
-                GridRow {
-                    Text("Failed")
-                    Spacer()
-                    Text("\(termSet.failCount)")
-                        .foregroundStyle(.red)
-                }
-                Divider()
-                GridRow {
-                    Text("Recently Failed")
-                    Spacer()
-                    Text(termSet.recentFail ? "Yes" : "No")
-                        .foregroundStyle(termSet.recentFail ? .red : .green)
+                Section {
+                    HStack {
+                        Text("Reviewed:")
+                        Spacer()
+                        Text("\(termSet.seenCount)")
+                    }
+                    HStack {
+                        Text("Passed:")
+                        Spacer()
+                        Text("\(termSet.successCount)")
+                            .foregroundStyle(.green)
+                    }
+                    HStack {
+                        Text("Failed:")
+                        Spacer()
+                        Text("\(termSet.failCount)")
+                            .foregroundStyle(.red)
+                    }
+                    HStack {
+                        Text("Recently Failed:")
+                        Spacer()
+                        Text(termSet.recentFail ? "Yes" : "No")
+                            .foregroundStyle(termSet.recentFail ? .red : .green)
+                    }
+                } header: {
+                    Text("Stats")
                 }
             }
             .navigationTitle("TermSet \(termSet.id)")
