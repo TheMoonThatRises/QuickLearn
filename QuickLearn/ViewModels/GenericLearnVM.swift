@@ -26,7 +26,6 @@ class GenericLearnVM: ObservableObject {
     @Published var originalSet: [UUID] = []
 
     @Published var cardIndex = 0
-    @Published var isFlipped = false
 
     @Published var answer = ""
 

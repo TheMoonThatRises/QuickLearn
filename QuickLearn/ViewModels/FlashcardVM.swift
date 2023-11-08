@@ -20,6 +20,8 @@ import Foundation
 import SwiftUI
 
 class FlashcardVM: GenericLearnVM {
+    @Published var isFlipped = false
+
     var previousCards: [Int] = []
 
     var displayTerm: Bool {
