@@ -52,7 +52,8 @@ struct MultipleChoiceView: View {
                             .padding()
 
                         ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                            let columns = Array(repeating: GridItem(.flexible()), count: geom.size.width > 800 ? 2 : 1)
+                            LazyVGrid(columns: columns) {
                                 ForEach(viewModel.possibleAnswers) { answer in
                                     let answerAnswer = viewModel.writeType == .term ? answer.term : answer.definition
                                     Button {
@@ -60,8 +61,8 @@ struct MultipleChoiceView: View {
                                     } label: {
                                         Text(answerAnswer)
                                             .font(.title2)
+                                            .frame(maxWidth: .infinity)
                                             .padding()
-                                            .frame(width: geom.size.width / 5 * 2)
                                             .overlay {
                                                 RoundedRectangle(cornerRadius: 5)
                                                     .stroke(Color.accentColor)
