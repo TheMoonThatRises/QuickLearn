@@ -26,18 +26,11 @@ struct FinishView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                Text("You finished all \(viewedCards.count) of \(type.rawValue)!")
+                    .bold()
+                    .font(.title)
                 switch type {
-                case .flashcards:
-                    Text("You finished all \(viewedCards.count) of the flashcards!")
-                        .bold()
-                        .font(.title)
-                case .write, .multiple:
-                    let dtype = type == .write ? "writing" : "multiple choice"
-
-                    Text("You finished all \(viewedCards.count) \(dtype) terms!")
-                        .bold()
-                        .font(.title)
-
+                case .write, .multiple, .match:
                     Spacer()
 
                     VStack(alignment: .leading) {
@@ -100,6 +93,8 @@ struct FinishView: View {
                     }
                     .padding()
 
+                    Spacer()
+                default:
                     Spacer()
                 }
             }

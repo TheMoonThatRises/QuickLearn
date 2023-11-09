@@ -22,4 +22,5 @@ enum LearnType: String {
     case flashcards = "Flashcards"
     case write = "Writing"
     case multiple = "Multiple Choice"
+    case match = "Match"
 }

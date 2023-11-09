@@ -77,6 +77,16 @@ struct LearnSetView: View {
                             Text("Multiple Choice")
                         }
                     }
+                    NavigationLink {
+                        MatchView(viewModel: MatchVM(set: $set))
+                    } label: {
+                        HStack {
+                            Image(systemName: "rectangle.lefthalf.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            Text("Match")
+                        }
+                    }
                 } header: {
                     Text("Learning Options")
                 }
