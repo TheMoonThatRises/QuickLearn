@@ -82,10 +82,11 @@ class MatchVM: GenericLearnVM {
     private func checkAnswer() {
         if let selectedTerm = selectedTerm, let selectedDefinition = selectedDefinition,
             let termIndex = termIndex {
+            set.setList[termIndex].seenCount += 1
+
             if selectedTerm == selectedDefinition {
                 showCorrect = true
 
-                set.setList[termIndex].seenCount += 1
                 set.setList[termIndex].successCount += 1
                 set.setList[termIndex].recentFail = false
 
@@ -109,7 +110,6 @@ class MatchVM: GenericLearnVM {
             } else {
                 showIncorrect = true
 
-                set.setList[termIndex].seenCount += 1
                 set.setList[termIndex].failCount += 1
                 set.setList[termIndex].recentFail = true
 
