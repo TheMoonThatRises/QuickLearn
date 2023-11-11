@@ -28,6 +28,12 @@ class FlashcardVM: GenericLearnVM {
         (writeType == .term && !isFlipped) || (writeType == .definition && isFlipped)
     }
 
+    override func generateIndexes() {
+        super.generateIndexes()
+        isFlipped = false
+        previousCards = []
+    }
+
     override func increment() {
         withAnimation {
             if allIndexes.count <= 0 && isFlipped {
