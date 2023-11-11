@@ -25,7 +25,7 @@ struct MatchView: View {
         NavigationStack {
             GeometryReader { geom in
                 if viewModel.isFinished {
-                    FinishView(type: .match, viewedCards: viewModel.originalCards)
+                    FinishView(type: .match, viewedCards: viewModel.originalCards, reset: viewModel.reset)
                 } else {
                     if geom.size.width < 800 {
                         MinimizedMatchView()

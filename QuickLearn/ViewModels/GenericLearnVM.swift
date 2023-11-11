@@ -107,6 +107,13 @@ class GenericLearnVM: ObservableObject {
         cardIndex = allIndexes.removeFirst()
     }
 
+    func reset() {
+        generateIndexes()
+        withAnimation {
+            isFinished = false
+        }
+    }
+
     func checkAnswer(canFail: Bool = true) {
         let correctAnswer = writeType == .term ? card.term : card.definition
 

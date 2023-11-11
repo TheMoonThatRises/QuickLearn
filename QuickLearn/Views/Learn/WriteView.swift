@@ -26,7 +26,7 @@ struct WriteView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 if viewModel.isFinished {
-                    FinishView(type: .write, viewedCards: viewModel.originalCards)
+                    FinishView(type: .write, viewedCards: viewModel.originalCards, reset: viewModel.reset)
                 } else {
                     Text("Write \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                         .bold()

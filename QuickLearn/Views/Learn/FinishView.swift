@@ -22,13 +22,26 @@ struct FinishView: View {
     var type: LearnType
 
     var viewedCards: [TermSet]
+    var reset: () -> Void
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 Text("You finished all \(viewedCards.count) of \(type.rawValue)!")
                     .bold()
-                    .font(.title)
+                    .font(.largeTitle)
+
+                Spacer()
+
+                Button {
+                    reset()
+                } label: {
+                    Text("Learn Again")
+                        .font(.title)
+                }
+
+                Spacer()
+
                 switch type {
                 case .write, .multiple, .match:
                     Spacer()
