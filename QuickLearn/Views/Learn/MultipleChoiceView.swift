@@ -29,7 +29,7 @@ struct MultipleChoiceView: View {
                     if viewModel.isFinished {
                         FinishView(type: .multiple, viewedCards: viewModel.originalCards, reset: viewModel.reset)
                     } else {
-                        Text("Write \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
+                        Text("Choice \(viewModel.cardsIn) of \(viewModel.originalSet.count)")
                             .bold()
                             .font(.title2)
                             .padding()
