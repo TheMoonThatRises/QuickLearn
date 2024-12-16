@@ -57,10 +57,7 @@ class MatchVM: GenericLearnVM {
 
     override func generateIndexes() {
         switch writeOrder {
-        case .inOrder:
-            terms = set.setList.map { $0.id }
-            definitions = set.setList.shuffled().map { $0.id }
-        case .random:
+        case .inOrder, .random:
             terms = set.setList.map { $0.id }
             definitions = set.setList.shuffled().map { $0.id }
         case .star:
@@ -80,6 +77,7 @@ class MatchVM: GenericLearnVM {
     }
 
     private func checkAnswer() {
+        // Note: fix this to make it work with any correct answer, and not by index
         if let selectedTerm = selectedTerm, let selectedDefinition = selectedDefinition,
             let termIndex = termIndex {
             set.setList[termIndex].seenCount += 1
