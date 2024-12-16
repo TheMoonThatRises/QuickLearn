@@ -89,7 +89,7 @@ class MatchVM: GenericLearnVM {
                 set.setList[termIndex].recentFail = false
 
                 Task { @MainActor in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    try? await Task.sleep(for: .seconds(1.5))
 
                     showCorrect = false
 
@@ -112,7 +112,7 @@ class MatchVM: GenericLearnVM {
                 set.setList[termIndex].recentFail = true
 
                 Task { @MainActor in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    try? await Task.sleep(for: .seconds(1.5))
 
                     showIncorrect = false
                 }
