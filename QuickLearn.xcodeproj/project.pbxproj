@@ -192,7 +192,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B69B16912AEDE41200C79327 /* Build configuration list for PBXNativeTarget "QuickLearn" */;
 			buildPhases = (
-				B60AAF5D2AF04B9900ACE466 /* ShellScript */,
+				B60AAF5D2AF04B9900ACE466 /* Swiftlint */,
 				B69B167D2AEDE41000C79327 /* Sources */,
 				B69B167E2AEDE41000C79327 /* Frameworks */,
 				B69B167F2AEDE41000C79327 /* Resources */,
@@ -258,8 +258,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B60AAF5D2AF04B9900ACE466 /* ShellScript */ = {
+		B60AAF5D2AF04B9900ACE466 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -267,13 +268,14 @@
 			);
 			inputPaths = (
 			);
+			name = Swiftlint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
