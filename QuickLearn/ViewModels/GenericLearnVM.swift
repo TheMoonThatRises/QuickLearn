@@ -43,7 +43,7 @@ class GenericLearnVM: ObservableObject {
 
     @Published var showSettingsSheet = false
 
-    @AppStorage("writeType") var writeType: TypeSetting = .term
+    @AppStorage("writeType") var writeType: TypeSetting = .definition
     @AppStorage("writeOrder") var writeOrder: OrderSetting = .random {
         didSet {
             generateIndexes()
@@ -117,7 +117,7 @@ class GenericLearnVM: ObservableObject {
             showCorrect = true
 
             Task { @MainActor in
-                try? await Task.sleep(nanoseconds: 1_500_000_000)
+                try? await Task.sleep(for: .seconds(1.5))
 
                 showCorrect = false
 
@@ -133,7 +133,7 @@ class GenericLearnVM: ObservableObject {
             showIncorrect = true
 
             Task { @MainActor in
-                try? await Task.sleep(nanoseconds: 3_000_000_000)
+                try? await Task.sleep(for: .seconds(3))
 
                 showIncorrect = false
 
