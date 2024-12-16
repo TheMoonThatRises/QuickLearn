@@ -30,17 +30,11 @@ class GenericLearnVM: ObservableObject {
     @Published var answer = ""
 
     var originalCards: [TermSet] {
-        // swiftlint:disable:next implicit_getter
-        get {
-            set.setList.filter { originalSet.contains($0.id) }
-        }
+        return set.setList.filter { originalSet.contains($0.id) }
     }
 
     var card: TermSet {
-        // swiftlint:disable:next implicit_getter
-        get {
-            set.setList[cardIndex]
-        }
+        return set.setList[cardIndex]
     }
 
     var cardsIn: Int {
